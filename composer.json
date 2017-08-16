@@ -14,6 +14,6 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n-composer-skeleton-installer": "master-dev",
+        "n2n/n2n-composer-skeleton-installer": "master-dev"
     }
 }
