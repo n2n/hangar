@@ -1,6 +1,4 @@
 <?php
-use n2n\web\http\ResponseCacheControl;
-use n2n\io\managed\impl\CommonFile;
 use n2n\io\managed\impl\FileFactory;
 use n2n\web\http\HttpCacheControl;
 
@@ -41,7 +39,6 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 			$response = n2n\core\N2N::getHttpContext()->getResponse();
 			$response->setHttpCacheControl(new HttpCacheControl(new \DateInterval('P1D')));
 			$response->send(FileFactory::createFromFs($path));
-	// 		readfile('phar://' . $pubPath . '/hangar.phar/public/' . $cmdPath->toRealString(false));
 			return;
 		}
 	}
