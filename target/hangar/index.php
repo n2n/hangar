@@ -38,7 +38,7 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 			
 			$response = n2n\core\N2N::getHttpContext()->getResponse();
 			$response->setHttpCacheControl(new HttpCacheControl(new \DateInterval('P1D')));
-			$response->send(FileFactory::createFromFs($path));
+			$response->send(new n2n\web\http\payload\impl\FilePayload(FileFactory::createFromFs($path)));
 			return;
 		}
 	}
