@@ -4,7 +4,6 @@
     "description": "hangar",
     "keywords": ["n2n","hangar"],
     "homepage": "http://n2n.rocks/",
-    "license": "GNU LGPL",
     "authors": [
         {
             "name": "Thomas Günther",
