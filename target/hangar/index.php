@@ -9,6 +9,7 @@ $appPath = 'phar://' . $pubPath . '/hangar.phar/app';
 $libPath = 'phar://' . $pubPath . '/hangar.phar/lib';
 $appAppPath = realpath($pubPath . '/../../app');
 $appLibPath = realpath($pubPath . '/../../lib');
+$appRootPath = realpath($pubPath . '/../..');
 
 $varPath = realpath($pubPath . '/var');
 $appVarPath = realpath($pubPath . '/../../var');
@@ -44,7 +45,7 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 	}
 }
 
-hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath);
+hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath);
 n2n\core\N2N::autoInvokeBatchJobs();
 n2n\core\N2N::autoInvokeControllers();
 
