@@ -13,6 +13,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n-composer-skeleton-component-installer": "master-dev"
+        "n2n/n2n-composer-skeleton-component-installer": "master-dev",
+        "n2n/hangar-api": "master-dev",
+        "n2n/phpbob": "master-dev"
     }
 }
