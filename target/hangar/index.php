@@ -45,7 +45,8 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 	}
 }
 
-hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath);
+hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath, 
+		n2n\core\N2N::getCurrentRequest()->getCmdContextPath()->toUrl()->reducedPath(2)->extR(['public']));
 n2n\core\N2N::autoInvokeBatchJobs();
 n2n\core\N2N::autoInvokeControllers();
 
