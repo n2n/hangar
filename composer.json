@@ -13,8 +13,15 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n-composer-skeleton-component-installer": "master-dev",
-        "n2n/hangar-api": "master-dev",
-        "n2n/phpbob": "master-dev"
+        "n2n/n2n-composer-skeleton-component-installer": "dev-master",
+        "n2n/n2n": "dev-master",
+        "n2n/n2n-context": "dev-master",
+        "n2n/n2n-mail": "dev-master",
+        "n2n/n2n-persistence": "dev-master",
+        "n2n/n2n-web": "dev-master",
+        "n2n/n2n-impl-web-ui": "dev-master",
+        "n2n/n2n-impl-web-dispatch": "dev-master",
+        "n2n/hangar-api": "dev-master",
+        "n2n/phpbob": "dev-master"
     }
 }
