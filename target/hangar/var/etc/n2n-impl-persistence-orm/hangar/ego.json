@@ -1,5 +1,19 @@
 {
-    "hangarDefs": [
-        "n2n\\impl\\persistence\\orm\\property\\hangar\\N2nHangarDef"
+    "propDefs": [
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\StringPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\IntegerPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\BooleanPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\DateTimePropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\TextPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\FixedPointPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\N2nLocalePropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\relation\\ManyToOnePropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\relation\\OneToManyPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\relation\\ManyToManyPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\relation\\OneToOnePropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\ManagedFilePropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\EnumPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\FloatingPointPropDef",
+        "n2n\\impl\\persistence\\orm\\property\\hangar\\scalar\\BinaryPropDef"
     ]
 }
