@@ -23,5 +23,8 @@
         "n2n/n2n-impl-web-dispatch": "dev-master",
         "n2n/hangar-api": "dev-master",
         "n2n/phpbob": "dev-master"
-    }
+    },
+    "bin": [
+        "bin/hangar"
+    ]
 }
