@@ -1,16 +1,18 @@
 <?php
-$pubPath = dirname(__FILE__);
-$appRootPath = realpath($pubPath . '/../..');
-$appPubPath = realpath($appRootPath . '/public');
-$appAppPath = realpath($appRootPath . '/app');
-$appLibPath = realpath($appRootPath . '/lib');
-$appVarPath = realpath($appRootPath . '/var');
+use n2n\io\managed\impl\FileFactory;
+use n2n\web\http\HttpCacheControl;
 
+$pubPath = dirname(__FILE__);
+$appPubPath = realpath($pubPath . '/../../public');
 
 $appPath = 'phar://' . $pubPath . '/hangar.phar/app';
 $libPath = 'phar://' . $pubPath . '/hangar.phar/lib';
+$appAppPath = realpath($pubPath . '/../../app');
+$appLibPath = realpath($pubPath . '/../../lib');
+$appRootPath = realpath($pubPath . '/../..');
 
 $varPath = realpath($pubPath . '/var');
+$appVarPath = realpath($pubPath . '/../../var');
 
 set_include_path(implode(PATH_SEPARATOR,
 		array($appPath, $libPath, $appAppPath, $appLibPath, get_include_path())));
@@ -36,8 +38,8 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 		if (is_file($path)) {
 			
 			$response = n2n\core\N2N::getHttpContext()->getResponse();
-			$response->setHttpCacheControl(new n2n\web\http\HttpCacheControl(new \DateInterval('P1D')));
-			$response->send(new n2n\web\http\payload\impl\FilePayload(n2n\io\managed\impl\FileFactory::createFromFs($path)));
+			$response->setHttpCacheControl(new HttpCacheControl(new \DateInterval('P1D')));
+			$response->send(new n2n\web\http\payload\impl\FilePayload(FileFactory::createFromFs($path)));
 			return;
 		}
 	}
