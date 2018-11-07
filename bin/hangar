@@ -1,3 +1,41 @@
 #!/usr/bin/env php
 <?php
-echo "holeradio"
+
+$pubPath = dirname(__FILE__);
+$appRootPath = realpath($pubPath . '/../../../..');
+$appPubPath = realpath($appRootPath . '/public');
+$appAppPath = realpath($appRootPath . '/app');
+$appLibPath = realpath($appRootPath . '/lib');
+$appVarPath = realpath($appRootPath . '/var');
+
+$appPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/app';
+$libPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/lib';
+$varPath = realpath($appRootPath . '/comp/hangar/var');
+
+set_include_path(implode(PATH_SEPARATOR,
+		array($appPath, $libPath, $appAppPath, $appLibPath, get_include_path())));
+
+define('N2N_STAGE', 'development');
+
+require_once __DIR__ .'/../../n2n/src/app/n2n/core/TypeLoader.php';
+
+n2n\core\TypeLoader::register(true,
+		require __DIR__ . '/../../../composer/autoload_psr4.php',
+		require __DIR__ . '/../../../composer/autoload_classmap.php');
+
+n2n\core\N2N::initialize($pubPath, $varPath, new n2n\core\FileN2nCache(), 
+		new n2n\core\module\impl\EtcModuleFactory('hangar.app.ini', 'hangar.module.ini'));
+
+hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath);
+hangar\Hangar::cli(array_slice($argv, 1));
+
+n2n\core\N2N::finalize();
+
+function test($value) {
+	if (!n2n\core\N2N::isLiveStageOn()) {
+		echo "\r\n<pre>\r\n";
+		var_dump($value);
+		if (is_scalar($value)) echo "\r\n";
+		echo "</pre>\r\n";
+	}
+}
