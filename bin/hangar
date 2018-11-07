@@ -1,13 +1,15 @@
 #!/usr/bin/env php
 <?php
+$curPath = dirname(__FILE__);
 
-$pubPath = dirname(__FILE__);
-$appRootPath = realpath($pubPath . '/../../../..');
+$appRootPath = realpath($curPath . '/../../../..');
 $appPubPath = realpath($appRootPath . '/public');
 $appAppPath = realpath($appRootPath . '/app');
 $appLibPath = realpath($appRootPath . '/lib');
 $appVarPath = realpath($appRootPath . '/var');
 
+$pubPath = realpath($appRootPath . '/comp/hangar');
+var_dump($pubPath);
 $appPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/app';
 $libPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/lib';
 $varPath = realpath($appRootPath . '/comp/hangar/var');
