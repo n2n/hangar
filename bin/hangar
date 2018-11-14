@@ -8,24 +8,24 @@ $appAppPath = realpath($appRootPath . '/app');
 $appLibPath = realpath($appRootPath . '/lib');
 $appVarPath = realpath($appRootPath . '/var');
 
-$pubPath = realpath($appRootPath . '/comp/hangar');
-$appPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/app';
-$libPath = 'phar://' . $appRootPath . '/comp/hangar/hangar.phar/lib';
-$varPath = realpath($appRootPath . '/comp/hangar/var');
+$pubPath = realpath($curPath . '/../target');
+$appPath = 'phar://' . $pubPath . '/hangar.phar/app';
+$libPath = 'phar://' . $pubPath . '/hangar.phar/lib';
+$varPath = realpath($pubPath . '/var');
 
 set_include_path(implode(PATH_SEPARATOR,
 		array($appPath, $libPath, $appAppPath, $appLibPath, get_include_path())));
 
 define('N2N_STAGE', 'development');
 
-require_once __DIR__ .'/../../n2n/src/app/n2n/core/TypeLoader.php';
+require_once __DIR__ . '/../../n2n/src/app/n2n/core/TypeLoader.php';
 
 n2n\core\TypeLoader::register(true,
 		require __DIR__ . '/../../../composer/autoload_psr4.php',
 		require __DIR__ . '/../../../composer/autoload_classmap.php');
 
 n2n\core\N2N::initialize($pubPath, $varPath, new n2n\core\FileN2nCache(), 
-		new n2n\core\module\impl\EtcModuleFactory('hangar.app.ini', 'hangar.module.ini'));
+		new hangar\core\model\HangarModuleFactory($appVarPath));
 
 hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath);
 hangar\Hangar::cli(array_slice($argv, 1));
