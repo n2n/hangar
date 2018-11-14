@@ -1,18 +1,15 @@
 <?php
-use n2n\io\managed\impl\FileFactory;
-use n2n\web\http\HttpCacheControl;
-
 $pubPath = dirname(__FILE__);
-$appPubPath = realpath($pubPath . '/../../public');
+
+$appRootPath = realpath($pubPath . '/../../../..');
+$appPubPath = realpath($appRootPath . '/public');
+$appAppPath = realpath($appRootPath . '/app');
+$appLibPath = realpath($appRootPath . '/lib');
+$appVarPath = realpath($appRootPath . '/var');
 
 $appPath = 'phar://' . $pubPath . '/hangar.phar/app';
 $libPath = 'phar://' . $pubPath . '/hangar.phar/lib';
-$appAppPath = realpath($pubPath . '/../../app');
-$appLibPath = realpath($pubPath . '/../../lib');
-$appRootPath = realpath($pubPath . '/../..');
-
 $varPath = realpath($pubPath . '/var');
-$appVarPath = realpath($pubPath . '/../../var');
 
 set_include_path(implode(PATH_SEPARATOR,
 		array($appPath, $libPath, $appAppPath, $appLibPath, get_include_path())));
@@ -21,32 +18,36 @@ if (isset($_SERVER['N2N_STAGE'])) {
 	define('N2N_STAGE', $_SERVER['N2N_STAGE']);
 }
 
-require_once '../../vendor/n2n/n2n/src/app/n2n/core/TypeLoader.php';
+require_once __DIR__ . '/../../n2n/src/app/n2n/core/TypeLoader.php';
 
 n2n\core\TypeLoader::register(true,
-		require __DIR__ . '/../../vendor/composer/autoload_psr4.php',
-		require __DIR__ . '/../../vendor/composer/autoload_classmap.php');
+		require __DIR__ . '/../../../composer/autoload_psr4.php',
+		require __DIR__ . '/../../../composer/autoload_classmap.php');
 
-n2n\core\N2N::initialize($pubPath, $varPath, new n2n\core\FileN2nCache(), 
-		new n2n\core\module\impl\EtcModuleFactory('hangar.app.ini', 'hangar.module.ini'));
+n2n\core\N2N::initialize($pubPath, $varPath, new n2n\core\FileN2nCache(),
+		new hangar\core\model\HangarModuleFactory($appVarPath));
 
 if (n2n\core\N2N::isHttpContextAvailable()) {
 	$cmdPath = n2n\core\N2N::getHttpContext()->getRequest()->getCmdPath();			
 
 	if ('assets' == $cmdPath->getFirstPathPart(false)) {
 		$path = 'phar://' . $pubPath . '/hangar.phar/public/' . $cmdPath->toRealString(false);
+		if (!is_file($path)) {
+			$path = $appPubPath . DIRECTORY_SEPARATOR . $cmdPath->toRealString(false);
+		}
+		
 		if (is_file($path)) {
 			
 			$response = n2n\core\N2N::getHttpContext()->getResponse();
-			$response->setHttpCacheControl(new HttpCacheControl(new \DateInterval('P1D')));
-			$response->send(new n2n\web\http\payload\impl\FilePayload(FileFactory::createFromFs($path)));
+			$response->setHttpCacheControl(new n2n\web\http\HttpCacheControl(new \DateInterval('P1D')));
+			$response->send(new n2n\web\http\payload\impl\FilePayload(n2n\io\managed\impl\FileFactory::createFromFs($path)));
 			return;
 		}
 	}
 }
 
 hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath, 
-		n2n\core\N2N::getCurrentRequest()->getCmdContextPath()->toUrl()->reducedPath(2)->extR(['public']));
+		n2n\core\N2N::getCurrentRequest()->getCmdContextPath()->toUrl()->reducedPath(4)->extR(['public']));
 n2n\core\N2N::autoInvokeBatchJobs();
 n2n\core\N2N::autoInvokeControllers();
 
