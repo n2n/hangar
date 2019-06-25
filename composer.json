@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n-composer-skeleton-component-installer": "7.1.x-dev",
         "n2n/n2n": "7.2.x-dev",
         "n2n/n2n-context": "7.2.x-dev",
         "n2n/n2n-mail": "7.2.x-dev",
