@@ -2,26 +2,29 @@
     "name": "n2n/hangar",
     "type": "n2n-skeleton-component",
     "description": "hangar",
-    "keywords": ["n2n","hangar"],
+    "keywords": [
+        "n2n",
+        "hangar"
+    ],
     "homepage": "http://n2n.rocks/",
     "authors": [
         {
-            "name": "Thomas Günther",
+            "name": "Thomas G\u00fcnther",
             "email": "guenther@hnm.ch",
             "homepage": "https://www.hnm.ch/"
         }
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n": "7.2.x-dev",
-        "n2n/n2n-context": "7.2.x-dev",
-        "n2n/n2n-mail": "7.2.x-dev",
-        "n2n/n2n-persistence": "7.2.x-dev",
-        "n2n/n2n-web": "7.2.x-dev",
-        "n2n/n2n-impl-web-ui": "7.2.x-dev",
-        "n2n/n2n-impl-web-dispatch": "7.2.x-dev",
-        "n2n/hangar-api": "1.0.x-dev",
-        "n2n/phpbob": "1.0.x-dev"
+        "n2n/n2n": "^7.2.14",
+        "n2n/n2n-context": "^7.2.14",
+        "n2n/n2n-mail": "^7.2.14",
+        "n2n/n2n-persistence": "^7.2.14",
+        "n2n/n2n-web": "^7.2.14",
+        "n2n/n2n-impl-web-ui": "^7.2.14",
+        "n2n/n2n-impl-web-dispatch": "^7.2.14",
+        "n2n/hangar-api": "^1.0.4",
+        "n2n/phpbob": "^1.0.5"
     },
     "bin": [
         "bin/hangar"
