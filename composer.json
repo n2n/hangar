@@ -13,15 +13,15 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n": "dev-master",
-        "n2n/n2n-context": "dev-master",
-        "n2n/n2n-mail": "dev-master",
-        "n2n/n2n-persistence": "dev-master",
-        "n2n/n2n-web": "dev-master",
-        "n2n/n2n-impl-web-ui": "dev-master",
-        "n2n/n2n-impl-web-dispatch": "dev-master",
-        "n2n/hangar-api": "dev-master",
-        "n2n/phpbob": "dev-master"
+        "n2n/n2n": "^7.2.33",
+        "n2n/n2n-context": "^7.2.33",
+        "n2n/n2n-mail": "^7.2.33",
+        "n2n/n2n-persistence": "^7.2.33",
+        "n2n/n2n-web": "^7.2.33",
+        "n2n/n2n-impl-web-ui": "^7.2.33",
+        "n2n/n2n-impl-web-dispatch": "^7.2.33",
+        "n2n/hangar-api": "^1.0.6",
+        "n2n/phpbob": "^1.0.7"
     },
     "bin": [
         "bin/hangar"
