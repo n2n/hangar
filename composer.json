@@ -11,6 +11,8 @@
             "homepage": "https://www.hnm.ch/"
         }
     ],
+    "minimum-stability" : "dev",
+	"prefer-stable": true,
     "require": {
         "php": ">=7.0",
         "n2n/n2n": "^7.2.33",
