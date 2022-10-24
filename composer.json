@@ -4,6 +4,7 @@
     "description": "hangar",
     "keywords": ["n2n","hangar"],
     "homepage": "http://n2n.rocks/",
+	"minimum-stability" : "dev",
     "authors": [
         {
             "name": "Thomas Günther",
@@ -13,13 +14,13 @@
     ],
     "require": {
         "php": ">=7.0",
-        "n2n/n2n": "7.2.x-dev",
-        "n2n/n2n-context": "7.2.x-dev",
-        "n2n/n2n-mail": "7.2.x-dev",
-        "n2n/n2n-persistence": "7.2.x-dev",
-        "n2n/n2n-web": "7.2.x-dev",
-        "n2n/n2n-impl-web-ui": "7.2.x-dev",
-        "n2n/n2n-impl-web-dispatch": "7.2.x-dev",
+        "n2n/n2n": "^7.3",
+        "n2n/n2n-context": "^7.3",
+        "n2n/n2n-mail": "^7.3",
+        "n2n/n2n-persistence": "^7.3",
+        "n2n/n2n-web": "^7.3",
+        "n2n/n2n-impl-web-ui": "^7.3",
+        "n2n/n2n-impl-web-dispatch": "^7.3",
         "n2n/hangar-api": "1.0.x-dev",
         "n2n/phpbob": "1.0.x-dev"
     },
