@@ -22,7 +22,7 @@
         "n2n/n2n-web": "^7.2.33",
         "n2n/n2n-impl-web-ui": "^7.2.33",
         "n2n/n2n-impl-web-dispatch": "^7.2.33",
-        "n2n/hangar-api": "^1.0.6",
+        "n2n/hangar-api": "^2",
         "n2n/phpbob": "^1.0.7"
     },
     "bin": [
