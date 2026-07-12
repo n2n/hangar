@@ -28,7 +28,7 @@ n2n\core\N2N::initialize($pubPath, $varPath, new n2n\core\FileN2nCache(),
 		new hangar\core\model\HangarModuleFactory($appVarPath));
 
 if (n2n\core\N2N::isHttpContextAvailable()) {
-	$cmdPath = n2n\core\N2N::getHttpContext()->getRequest()->getCmdPath();			
+	$cmdPath = n2n\core\N2N::getN2nContext()->lookup(n2n\web\http\Request::class)->getCmdPath();			
 
 	if ('assets' == $cmdPath->getFirstPathPart(false)) {
 		$path = 'phar://' . $pubPath . '/hangar.phar/public/' . $cmdPath->toRealString(false);
@@ -38,7 +38,7 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 		
 		if (is_file($path)) {
 			
-			$response = n2n\core\N2N::getHttpContext()->getResponse();
+			$response = n2n\core\N2N::getN2nContext()->lookup(n2n\web\http\Response::class);
 			$response->setHttpCacheControl(new n2n\web\http\HttpCacheControl(new \DateInterval('P1D')));
 			$response->send(new n2n\web\http\payload\impl\FilePayload(n2n\io\managed\impl\FileFactory::createFromFs($path)));
 			$response->flush();
@@ -48,7 +48,7 @@ if (n2n\core\N2N::isHttpContextAvailable()) {
 }
 
 hangar\Hangar::setup($appVarPath, $appAppPath, $appLibPath, $appPubPath, $appRootPath, 
-		n2n\core\N2N::getCurrentRequest()->getCmdContextPath()->toUrl()->reducedPath(4)->extR(['public']));
+		n2n\core\N2N::getN2nContext()->lookup(n2n\web\http\Request::class)->getCmdContextPath()->toUrl()->reducedPath(4)->extR(['public']));
 n2n\core\N2N::autoInvokeBatchJobs();
 n2n\core\N2N::autoInvokeControllers();
 
